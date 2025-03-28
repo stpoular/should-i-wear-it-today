@@ -1,8 +1,8 @@
-# FastAPI-Cloud
+# API
 
 ## Overview
 
-**FastAPI-Cloud** is a RESTful API built using **FastAPI** that enables users to manage their accounts, add and update items, and submit comments on those items. The backend utilizes **Google Firestore** as the database, and **JWT tokens** are used for secure authentication. This system supports full CRUD (Create, Read, Update, Delete) operations for users, items, and submissions.
+* A RESTful API built using **FastAPI** that enables users to manage their accounts, add and update items, and submit comments on those items. The backend utilizes **Google Firestore** as the database, and **JWT tokens** are used for secure authentication. This system supports full CRUD (Create, Read, Update, Delete) operations for users, items, and submissions.
 
 ## Features
 
@@ -21,7 +21,7 @@
   - Add comments (submissions) related to items.
   - View, update, and delete submissions for the authenticated user.
 
-## Technologies Used
+## Tech stack
 
 - **FastAPI**: Web framework for building the API.
 - **Pydantic**: Data validation with Pydantic models.
@@ -108,25 +108,11 @@
 
 ## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/fastapi-cloud.git
-   ```
+1. Set up **Google Cloud Firestore** and authenticate using a service account key.
 
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Set up **Google Cloud Firestore** and authenticate using a service account key.
-
-4. Run the FastAPI app:
+2. Run the FastAPI app:
    ```bash
    uvicorn app.main:app --reload
    ```
 
-5. The API will be accessible at `http://127.0.0.1:8000`.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+3. The API will be accessible at `http://127.0.0.1:8000`.
