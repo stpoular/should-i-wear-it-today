@@ -7,8 +7,24 @@ from app.models import User, Item, Submission, LoginRequest
 from app.database import db
 from typing import Optional
 
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# List of allowed origins (can be adjusted for production)
+origins = [
+    "http://localhost:3000",  # For local development
+    "http://34.138.45.167:3000",  # For your frontend IP address
+]
+
+# Add CORS middleware before your routes
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Allows requests from the specified origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 
 
 ########################################################################################################################

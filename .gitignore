@@ -178,3 +178,21 @@ cython_debug/
 .idea/inspectionProfiles/
 
 .idea/
+
+
+
+# Ignore node_modules in frontend
+/frontend/node_modules/
+
+# Ignore build/production folders
+/frontend/build/
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development
+/frontend/.env.production
+
+# Ignore logs and temporary files
+/frontend/npm-debug.log
+/frontend/yarn-debug.log
+/frontend/yarn-error.log
+

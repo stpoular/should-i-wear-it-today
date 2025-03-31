@@ -53,10 +53,15 @@ See [API Documentation](backend/API.md)
 
 4. Run the backend app:
    ```bash
-   uvicorn app.main:app --reload
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
    ```
 
 5. The API will be accessible at `http://127.0.0.1:8000`.
+
+6. Run the frontend app:
+   ```bash
+   npm start
+   ```
 
 ## License
 
