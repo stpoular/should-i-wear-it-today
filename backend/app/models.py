@@ -25,3 +25,8 @@ class Submission(BaseModel):
     country: str
     rating: int   # 0 - 100 
 
+
+class UpdateUserRequest(BaseModel):
+    username: Optional[str]
+    email: Optional[str]
+    password: Optional[str]

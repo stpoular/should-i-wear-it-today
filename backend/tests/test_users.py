@@ -70,6 +70,35 @@ def test_get_user_info():
     assert response.status_code == 200
     assert response.json()["username"] == valid_user["username"]
 
+
+# Test updating user details
+'''
+def test_update_user_info():
+    # Login to get the token
+    response = client.post("/tokens/", json=valid_user)
+    assert response.status_code == 200
+    token = response.json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
+    # Prepare the data to update the user (e.g., change password, username, or email)
+    updated_user_data = {
+        "username": valid_user["username"],  # Include the current username (even if unchanged)
+        "email": valid_user["email"],  # Include the current email (even if unchanged)
+        "password": "NewPassword12300000"  # New password
+    }
+
+    # Print the data before sending
+    print("Updated User Data:", updated_user_data)
+
+    # Send PUT request to update user info
+    response = client.put("/users/me/", headers=headers, json=updated_user_data)
+
+    # Check response status and message
+    if response.status_code != 200:
+        print("Error Response:", response.json())  # This will show the validation error
+    assert response.status_code == 200
+'''
+
 # Test deleting the user
 def test_delete_user():
     client.post("/users/", json=valid_user)

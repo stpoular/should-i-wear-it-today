@@ -6,6 +6,7 @@ from app.auth import get_current_user
 from app.models import User, Item, Submission, LoginRequest
 from app.database import db
 from typing import Optional
+from app.models import UpdateUserRequest
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -55,16 +56,14 @@ async def get_user_info_route(current_user: str = Depends(get_current_user)):
 
 # Update user details
 @app.put("/users/me/")
-async def update_user_info_route(user: User, current_user: str = Depends(get_current_user)):
-    user_ref = db.collection("users").where("username", "==", current_user).stream()
-    user_data = next(user_ref, None)
-
-    if user_data is None:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    user_id = user_data.id
-    update_data = user.dict()  # Use the data provided in the update
-    return update_user_info(user_id, update_data)
+async def update_user_info(update_data: UpdateUserRequest, current_user: User = Depends(get_current_user)):
+    try:
+        # Update user info
+        user_id = current_user["user_id"]  # Assuming the current user has user_id as a key
+        result = update_user_info(user_id, update_data)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 # Delete current user account

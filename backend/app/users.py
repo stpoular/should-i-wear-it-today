@@ -4,6 +4,7 @@ from app.database import db
 from app.auth import create_access_token
 from passlib.context import CryptContext
 import uuid
+from app.models import UpdateUserRequest
 
 # Initialize password hasher
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -74,15 +75,15 @@ def get_user_details(user_username: str):
     return user.to_dict()
 
 # Update user details
-def update_user_info(user_id: str, update_data: dict):
+def update_user_info(user_id: str, update_data: UpdateUserRequest):
     """
-    Update user details in Firestore.
+    Update user details in Firestore. Only provided fields will be updated.
     """
-    # Hash new password if provided
-    if "password" in update_data:
-        update_data["password"] = hash_password(update_data["password"])
+    if update_data.password:
+        update_data.password = hash_password(update_data.password)
 
-    db.collection("users").document(user_id).update(update_data)
+    # Update only the fields provided in the update_data
+    db.collection("users").document(user_id).update(update_data.dict(exclude_unset=True))
     return {"message": "User information updated successfully"}
 
 # Delete a user from Firestore
